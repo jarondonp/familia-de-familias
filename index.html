@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Familia de Familias</title>
+    <style>
+        :root {
+            --bg: #fafaf8;
+            --text: #2d2d2b;
+            --muted: #6b6b67;
+            --accent: #8b6f4e;
+            --accent-light: #f0ebe3;
+            --border: #e8e4dd;
+            --white: #ffffff;
+            --radius: 6px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 250, 248, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 2rem;
+        }
+
+        .nav-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 160px 2rem 120px;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 400;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 2rem;
+        }
+
+        .section-inner {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+            line-height: 1.25;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Alternating background */
+        .bg-alt {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Values */
+        .values-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .value-item {
+            text-align: center;
+        }
+
+        .value-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .value-item h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-item p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        /* Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .timeline-item {
+            text-align: center;
+        }
+
+        .timeline-year {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h4 {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item p {
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.4rem;
+            color: var(--accent);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 100px 2rem;
+        }
+
+        .cta h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--accent);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #7a5f3e;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-inner {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin: 0.25rem 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text);
+            margin: 4px 0;
+            transition: 0.2s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero {
+                padding: 120px 1.5rem 80px;
+            }
+
+            section {
+                padding: 60px 1.5rem;
+            }
+
+            .values-row,
+            .timeline {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--bg);
+                border-bottom: 1px solid var(--border);
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Familia de Familias</a>
+        <button class="nav-toggle" aria-label="Menú" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#origen">Origen</a></li>
+            <li><a href="#mision">Misión</a></li>
+            <li><a href="#actividades">Actividades</a></li>
+            <li><a href="#estructura">Estructura</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-tag">Asociación sin ánimo de lucro</div>
+    <h1>Fortaleciendo <em>familias</em> para un futuro unido</h1>
+    <p>Una comunidad de familias que recorren juntas un camino de crecimiento personal, formación y acompañamiento, construyendo una nueva cultura de la comunión y la solidaridad.</p>
+</header>
+
+<section id="origen">
+    <div class="section-inner">
+        <div class="section-label">Origen y finalidad</div>
+        <h2>Una respuesta a las necesidades de las familias de hoy</h2>
+        <p>La Asociación Familia de Familias nace de la experiencia compartida de muchas familias que, ante la soledad y el desamparo que impone la cultura dominante, decidieron unirse para recorrer juntas un camino diferente.</p>
+        <p>En la actualidad, las familias son más pequeñas, están menos conectadas con las generaciones anteriores y cada miembro desarrolla su vida profesional de forma individual. Esto dificulta la vida de los matrimonios y el crecimiento saludable de los hijos, que a menudo desarrollan heridas afectivas por la falta de disponibilidad y proximidad de sus progenitores.</p>
+        <p>Constituida en Valencia el 31 de mayo de 2025, al amparo de la Ley Orgánica 1/2002 reguladora del Derecho de Asociación, la Asociación trabaja con las familias en dos ámbitos: el acompañamiento a los matrimonios y la formación de niños y jóvenes.</p>
+    </div>
+</section>
+
+<section class="bg-alt" id="mision">
+    <div class="section-inner">
+        <div class="section-label">Misión, visión y valores</div>
+        <h2>Lo que nos mueve</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Misión</h3>
+                <p>La maduración y promoción integral de las personas y familias que acudan a esta Asociación, desde nuestra identidad y vocación de servicio.</p>
+            </div>
+            <div class="card">
+                <h3>Visión</h3>
+                <p>Colaborar de forma gratuita y solidaria con todas las personas y asociaciones que persigan estos mismos fines, tejiendo una red de apoyo mutuo.</p>
+            </div>
+            <div class="card">
+                <h3>Valores</h3>
+                <p>Ofrecer y vivir todo lo anterior construyendo una nueva cultura de la comunión, la gratuidad y la solidaridad, basada en el ejemplo personal y la coherencia de vida.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="objetivos">
+    <div class="section-inner">
+        <div class="section-label">Objetivos</div>
+        <h2>Nuestros pilares fundamentales</h2>
+        <div class="values-row">
+            <div class="value-item">
+                <div class="value-icon">&middot;</div>
+                <h3>Calidad de vida</h3>
+                <p>Los padres son los máximos responsables de la educación de los menores. La Asociación colabora con ellos necesitando también su compromiso y cooperación.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">&middot;</div>
+                <h3>Educación y formación</h3>
+                <p>Cursos de formación integral para padres, hijos y jóvenes: talleres, encuentros, convivencias, campamentos, peregrinaciones y actividades de entretenimiento.</p>
+            </div>
+            <div class="value-item">
+                <div class="value-icon">&middot;</div>
+                <h3>Salud y cultura</h3>
+                <p>Actividades culturales y recreativas para el fortalecimiento tanto del cuerpo como del espíritu, en un ambiente de respeto y crecimiento personal.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-alt" id="actividades">
+    <div class="section-inner">
+        <div class="section-label">Actividades y encuentros</div>
+        <h2>Una vida compartida durante todo el año</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Encuentro de verano</h3>
+                <p>Una semana de duración reuniendo a casi 200 personas entre matrimonios, formadores, niños y adolescentes. Combina formación, trabajo en equipo, servicio, juego y oración.</p>
+            </div>
+            <div class="card">
+                <h3>Encuentros de fin de semana</h3>
+                <p>Dos encuentros al año —invierno y primavera— con unos 100 asistentes. Aportaciones de los propios miembros, trabajo en grupo, oración y excursiones.</p>
+            </div>
+            <div class="card">
+                <h3>Encuentro de jóvenes</h3>
+                <p>Una semana de duración específica para jóvenes, con temática adaptada a su edad, normalmente en el mismo lugar que el encuentro de verano familiar.</p>
+            </div>
+            <div class="card">
+                <h3>Reuniones quincenales</h3>
+                <p>Grupos de maduración para matrimonios que se reúnen cada dos semanas para trabajar materiales de formación y crecimiento personal en un clima de apertura y confianza.</p>
+            </div>
+            <div class="card">
+                <h3>Salidas y excursiones</h3>
+                <p>Cada dos o tres meses, sin calendario fijo, se organizan visitas a lugares significativos para disfrutar de la naturaleza y compartir en un ambiente distendido.</p>
+            </div>
+            <div class="card">
+                <h3>Acompañamiento personal</h3>
+                <p>Formadores especializados acompañan a jóvenes que, en su proceso de maduración, atraviesan momentos de confusión y solicitan, libre y voluntariamente, ayuda.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="impacto">
+    <div class="section-inner">
+        <div class="section-label">Impacto</div>
+        <h2>Una trayectoria de servicio</h2>
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Participantes en verano</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Voluntarios activos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Encuentros anuales</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2017</div>
+                <div class="stat-label">Desde este año</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-alt" id="estructura">
+    <div class="section-inner">
+        <div class="section-label">Estructura organizativa</div>
+        <h2>Cómo nos organizamos</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Equipo directivo</h3>
+                <p>Ocho personas encargadas de la toma de decisiones y la supervisión general de la organización y sus proyectos.</p>
+            </div>
+            <div class="card">
+                <h3>Coordinadores de proyectos</h3>
+                <p>Orientadores, formadores, educadores y gestores que diseñan y coordinan las actividades programadas.</p>
+            </div>
+            <div class="card">
+                <h3>Personal operativo</h3>
+                <p>Se encargan de la ejecución de las actividades, asegurando la eficiencia en la gestión de los recursos disponibles.</p>
+            </div>
+            <div class="card">
+                <h3>Voluntarios</h3>
+                <p>Más de 50 voluntarios activos cada año que apoyan en las actividades, la atención a los menores y la mejora continua.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="trayectoria">
+    <div class="section-inner">
+        <div class="section-label">Trayectoria</div>
+        <h2>De dónde venimos y hacia dónde vamos</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2017 – 2024</div>
+                <h4>Inicio del camino</h4>
+                <p>Comienzan los acompañamientos a las familias que lo solicitaban, con talleres, encuentros y reuniones de formación.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <h4>Constitución formal</h4>
+                <p>El 31 de mayo en Valencia se constituye legalmente la Asociación Familia de Familias como entidad sin ánimo de lucro.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2026 en adelante</div>
+                <h4>Continuidad y crecimiento</h4>
+                <p>Consolidación de los programas existentes, ampliación del alcance y colaboración con otras entidades afines.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta" id="contacto">
+    <div class="section-inner">
+        <div class="section-label">Participa</div>
+        <h2>La participación está abierta</h2>
+        <p>Si eres una familia que busca formación, acompañamiento y una comunidad donde crecer, este es tu lugar. Colaboramos con escuelas, universidades, parroquias y entidades que compartan nuestros fines.</p>
+        <a href="#" class="cta-button">Contactar con la Asociación</a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-inner">
+        <p>Asociación Familia de Familias &mdash; Constituida en Valencia el 31 de mayo de 2025</p>
+        <p>Asociación sin ánimo de lucro al amparo de la Ley Orgánica 1/2002, de 22 de marzo</p>
+    </div>
+</footer>
+
+</body>
+</html>
