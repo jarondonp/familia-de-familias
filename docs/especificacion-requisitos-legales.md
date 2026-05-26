@@ -15,10 +15,10 @@ El sitio web está sujeto a las siguientes normativas:
 
 El sitio debe identificar claramente a su propietario mediante el **Aviso Legal**.
 *   **Razón Social**: Asociación Familia de Familias
-*   **NIF/CIF**: G-XXXXXXXX (Dato de muestra - Reemplazar por el real)
-*   **Domicilio Social**: Valencia, España (Reemplazar por la dirección completa real)
-*   **Datos de Inscripción**: Inscrita en el Registro de Asociaciones de la Comunidad Valenciana (Reemplazar por número de registro real)
-*   **Email de contacto**: contacto@familiadefamilias.org (Reemplazar por el email real)
+*   **NIF/CIF**: G22588503
+*   **Domicilio Social**: C/ Lluís Oliag, Nº 29, Portal 29, Planta 1, Puerta 1, 46006 Valencia, España
+*   **Datos de Inscripción**: En proceso de constitución / registro
+*   **Email de contacto**: asociacionfamiliadefamilias@gmail.com
 
 ---
 
