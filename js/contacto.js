@@ -58,7 +58,8 @@
                 subject: subjectInput.value.trim(),
                 message: messageInput.value.trim(),
                 _captcha: 'false', // Desactivar el captcha del servidor de FormSubmit
-                _subject: `Nuevo mensaje de contacto: ${subjectInput.value.trim()}`
+                _subject: `Nuevo mensaje de contacto: ${subjectInput.value.trim()}`,
+                _template: 'box' // Formato visual mejorado en forma de caja
             };
 
             // 5. Cambiar a estado de carga
