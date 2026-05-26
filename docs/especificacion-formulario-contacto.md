@@ -34,7 +34,7 @@ El formulario reemplazará el botón estático de la sección "Participa" (`#con
 ## 2. Requisitos Técnicos y de Envío (AJAX)
 
 *   **Endpoint**: El envío de datos se realiza de forma asíncrona hacia la API de FormSubmit:
-    `https://formsubmit.co/ajax/javierr_ucv@hotmail.com`
+    `https://formsubmit.co/ajax/asociacionfamiliadefamilias@gmail.com`
 *   **Método**: `POST`
 *   **Cabeceras**: `Content-Type: application/json` y `Accept: application/json`
 *   **Flujo de Estados**:

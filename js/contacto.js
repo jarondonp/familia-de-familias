@@ -67,7 +67,7 @@
 
             try {
                 // 6. Enviar petición AJAX a FormSubmit
-                const response = await fetch('https://formsubmit.co/ajax/javierr_ucv@hotmail.com', {
+                const response = await fetch('https://formsubmit.co/ajax/asociacionfamiliadefamilias@gmail.com', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
