@@ -1,0 +1,317 @@
+/* CSS Modular para el Formulario de Contacto (RGPD / FormSubmit) */
+
+:root {
+    --error-color: #d93025;
+    --success-color: #2b7a4b;
+    --input-focus-shadow: 0 0 0 4px rgba(139, 111, 78, 0.15);
+    --card-shadow: 0 10px 30px rgba(139, 111, 78, 0.08);
+}
+
+/* Contenedor del Formulario */
+.contact-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+    max-width: 600px;
+    margin: 40px auto 0;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+/* Grupos de campos */
+.contact-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.contact-label {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+/* Campos de entrada e inputs */
+.contact-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.contact-input:focus {
+    border-color: var(--accent);
+    background: var(--white);
+    box-shadow: var(--input-focus-shadow);
+}
+
+textarea.contact-input {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* Campos de error */
+.contact-input.has-error {
+    border-color: var(--error-color);
+    background-color: rgba(217, 48, 37, 0.02);
+}
+
+.contact-input.has-error:focus {
+    box-shadow: 0 0 0 4px rgba(217, 48, 37, 0.15);
+}
+
+.contact-error-text {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--error-color);
+    margin-top: 5px;
+    display: none; /* Controlado por JS */
+}
+
+/* Casilla de consentimiento legal (RGPD) */
+.contact-checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.contact-checkbox-group input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    margin-top: 3px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.contact-checkbox-group input[type="checkbox"]:checked {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.contact-checkbox-group input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
+    border: solid var(--white);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.contact-checkbox-group input[type="checkbox"].has-error {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 3px rgba(217, 48, 37, 0.15);
+}
+
+.contact-checkbox-label {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.contact-checkbox-label a {
+    color: var(--accent);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.contact-checkbox-label a:hover {
+    color: var(--text);
+}
+
+/* Campo Honey (Protección Spam) */
+.contact-honey {
+    display: none;
+}
+
+/* Botón de envío */
+.contact-submit-container {
+    text-align: right;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 36px;
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(139, 111, 78, 0.15);
+}
+
+.contact-btn:hover {
+    background: #7a5f3e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(139, 111, 78, 0.25);
+}
+
+.contact-btn:active {
+    transform: translateY(0);
+}
+
+.contact-btn:disabled {
+    background-color: var(--border);
+    color: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Spinner de carga */
+.contact-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--white);
+    animation: contact-spin 0.8s linear infinite;
+    display: none; /* Controlado por JS */
+}
+
+@keyframes contact-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Tarjeta de Éxito */
+.contact-success-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 48px 32px;
+    box-shadow: var(--card-shadow);
+    max-width: 520px;
+    margin: 40px auto 0;
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: contact-fade-up 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes contact-fade-up {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.contact-success-icon-container {
+    width: 64px;
+    height: 64px;
+    background-color: rgba(43, 122, 75, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+}
+
+.contact-success-icon {
+    font-size: 2rem;
+    color: var(--success-color);
+    line-height: 1;
+}
+
+.contact-success-card h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.contact-success-card p {
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.contact-success-close-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--accent-light);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.contact-success-close-btn:hover {
+    background: var(--border);
+    color: var(--text);
+}
+
+/* Alerta de Error General */
+.contact-general-error {
+    background-color: rgba(217, 48, 37, 0.05);
+    border: 1px solid rgba(217, 48, 37, 0.15);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    color: var(--error-color);
+    margin-bottom: 20px;
+    display: none; /* Controlado por JS */
+}
+
+/* Adaptabilidad para dispositivos móviles */
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 24px 20px;
+        margin-top: 24px;
+    }
+
+    .contact-success-card {
+        padding: 32px 20px;
+    }
+
+    .contact-btn {
+        width: 100%;
+    }
+}
