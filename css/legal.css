@@ -1,0 +1,510 @@
+/* CSS Modular para Banner de Cookies, Modal de Configuración y Páginas Legales */
+
+:root {
+    /* Variables de la web principal */
+    --bg: #fafaf8;
+    --text: #2d2d2b;
+    --muted: #6b6b67;
+    --accent: #8b6f4e;
+    --accent-light: #f0ebe3;
+    --border: #e8e4dd;
+    --white: #ffffff;
+    --radius: 6px;
+
+    /* Variables específicas del consentimiento */
+    --legal-overlay: rgba(45, 45, 43, 0.5);
+    --legal-shadow: 0 12px 40px rgba(139, 111, 78, 0.12);
+    --legal-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   1. Banner de Cookies (Glassmorphism & Micro-animations)
+   ========================================================================== */
+#cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    max-width: 420px;
+    width: calc(100% - 48px);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(232, 228, 221, 0.8);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--legal-shadow);
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: var(--legal-transition);
+    display: none; /* Se activa mediante JS */
+}
+
+#cookie-banner.show {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#cookie-banner h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+#cookie-banner p {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+#cookie-banner p a {
+    color: var(--accent);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+#cookie-banner p a:hover {
+    color: var(--text);
+}
+
+/* Contenedor de Botones */
+.cookie-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cookie-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--legal-transition);
+    border: 1px solid transparent;
+}
+
+.cookie-btn-primary {
+    background: var(--accent);
+    color: var(--white);
+}
+
+.cookie-btn-primary:hover {
+    background: #7a5f3e;
+    transform: translateY(-1px);
+}
+
+.cookie-btn-secondary {
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid var(--border);
+}
+
+.cookie-btn-secondary:hover {
+    background: var(--border);
+    color: var(--text);
+    transform: translateY(-1px);
+}
+
+.cookie-btn-text {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    flex: 1 1 100%; /* Ocupa fila completa si es necesario */
+}
+
+.cookie-btn-text:hover {
+    background: rgba(232, 228, 221, 0.3);
+    color: var(--text);
+}
+
+/* ==========================================================================
+   2. Modal de Configuración (Personalización Granular)
+   ========================================================================== */
+#cookie-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--legal-overlay);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#cookie-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cookie-modal-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 520px;
+    padding: 32px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#cookie-modal.show .cookie-modal-card {
+    transform: scale(1);
+}
+
+.cookie-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.cookie-modal-header h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.3rem;
+    color: var(--text);
+}
+
+.cookie-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--muted);
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.cookie-modal-close:hover {
+    color: var(--text);
+}
+
+.cookie-modal-body {
+    max-height: 350px;
+    overflow-y: auto;
+    margin-bottom: 24px;
+    padding-right: 8px;
+}
+
+/* Scrollbar personalizado para el modal */
+.cookie-modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+.cookie-modal-body::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+.cookie-modal-body::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+/* Fila de Opción de Cookies */
+.cookie-option-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--border);
+}
+
+.cookie-option-row:last-child {
+    border-bottom: none;
+}
+
+.cookie-option-info {
+    max-width: 80%;
+}
+
+.cookie-option-info h4 {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.cookie-option-info p {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Interruptor Deslizante (Toggle Switch) */
+.cookie-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.cookie-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.cookie-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border);
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.cookie-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--white);
+    transition: .3s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.cookie-switch input:checked + .cookie-slider {
+    background-color: var(--accent);
+}
+
+.cookie-switch input:checked + .cookie-slider:before {
+    transform: translateX(20px);
+}
+
+.cookie-switch input:disabled + .cookie-slider {
+    background-color: #e2dfda;
+    cursor: not-allowed;
+}
+
+.cookie-switch input:disabled + .cookie-slider:before {
+    background-color: #b5b1a9;
+}
+
+/* Footer del modal */
+.cookie-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* ==========================================================================
+   3. Estilos Generales para las Páginas Legales
+   ========================================================================== */
+.legal-page {
+    background-color: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.legal-header {
+    border-bottom: 1px solid var(--border);
+    padding: 30px 2rem;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.legal-header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.legal-back-link {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+
+.legal-back-link:hover {
+    color: var(--text);
+}
+
+.legal-content-container {
+    max-width: 800px;
+    margin: 40px auto 80px;
+    padding: 0 2rem;
+    flex-grow: 1;
+}
+
+.legal-content-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 48px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.legal-content-card h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.legal-content-card .last-update {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.legal-content-card h2 {
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+}
+
+.legal-content-card h3 {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.legal-content-card p {
+    font-family: 'Georgia', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #4a4a46;
+    margin-bottom: 1.25rem;
+}
+
+.legal-content-card ul, .legal-content-card ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.legal-content-card li {
+    font-family: 'Georgia', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #4a4a46;
+    margin-bottom: 0.5rem;
+}
+
+.legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+.legal-table th, .legal-table td {
+    border: 1px solid var(--border);
+    padding: 12px;
+    text-align: left;
+}
+
+.legal-table th {
+    background-color: var(--bg);
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    #cookie-banner {
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 12px 12px 0 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        padding: 20px;
+    }
+
+    .cookie-btn {
+        flex: 1 1 calc(50% - 4px);
+    }
+
+    .cookie-btn-text {
+        flex: 1 1 100%;
+    }
+
+    .cookie-modal-card {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .legal-content-card {
+        padding: 24px;
+    }
+
+    .legal-content-card h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Enlaces del Footer */
+.footer-links {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.2s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--text);
+    transform: translateY(-1px);
+}
+
