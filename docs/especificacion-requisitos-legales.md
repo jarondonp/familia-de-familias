@@ -18,7 +18,7 @@ El sitio debe identificar claramente a su propietario mediante el **Aviso Legal*
 *   **NIF/CIF**: G22588503
 *   **Domicilio Social**: C/ Lluís Oliag, Nº 29, Portal 29, Planta 1, Puerta 1, 46006 Valencia, España
 *   **Datos de Inscripción**: En proceso de constitución / registro
-*   **Email de contacto**: asociacionfamiliadefamilias@gmail.com
+*   **Email de contacto**: javierr_ucv@hotmail.com
 
 ---
 
