@@ -86,8 +86,14 @@
 
             } catch (error) {
                 console.error('Error al enviar el formulario:', error);
-                // Mostrar alerta de error general
-                generalErrorAlert.textContent = 'Ha ocurrido un error al enviar su mensaje. Por favor, compruebe su conexión e inténtelo de nuevo.';
+                
+                // Mostrar alerta de error detallada si requiere activación o error general
+                if (error.message.includes('Activation') || error.message.includes('activate')) {
+                    generalErrorAlert.innerHTML = '<strong>Activación requerida:</strong> Se ha enviado un correo de confirmación de FormSubmit. Por favor, revise su bandeja de entrada (y carpeta de Spam/No deseado) y haga clic en <strong>"Activate Form"</strong> para activar el formulario.';
+                } else {
+                    generalErrorAlert.textContent = 'Ha ocurrido un error al enviar su mensaje. Por favor, compruebe su conexión e inténtelo de nuevo.';
+                }
+                
                 generalErrorAlert.style.display = 'block';
                 window.scrollTo({
                     top: contactSection.offsetTop,
